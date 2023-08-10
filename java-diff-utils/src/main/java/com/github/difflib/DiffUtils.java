@@ -54,15 +54,17 @@ public final class DiffUtils {
      * @return The patch describing the difference between the original and
      * revised sequences. Never {@code null}.
      */
-    public static <T> Patch<T> diff(List<T> original, List<T> revised, DiffAlgorithmListener progress) {
+    public static <T> Patch<T> diff(List<T> original, List<T> revised, DiffAlgorithmListener progress)
+        throws InterruptedException {
         return DiffUtils.diff(original, revised, DEFAULT_DIFF.create(), progress);
     }
 
-    public static <T> Patch<T> diff(List<T> original, List<T> revised) {
+    public static <T> Patch<T> diff(List<T> original, List<T> revised) throws InterruptedException {
         return DiffUtils.diff(original, revised, DEFAULT_DIFF.create(), null);
     }
 
-    public static <T> Patch<T> diff(List<T> original, List<T> revised, boolean includeEqualParts) {
+    public static <T> Patch<T> diff(List<T> original, List<T> revised, boolean includeEqualParts)
+        throws InterruptedException {
         return DiffUtils.diff(original, revised, DEFAULT_DIFF.create(), null, includeEqualParts);
     }
 
@@ -70,7 +72,7 @@ public final class DiffUtils {
      * Computes the difference between the original and revised text.
      */
     public static Patch<String> diff(String sourceText, String targetText,
-            DiffAlgorithmListener progress) {
+            DiffAlgorithmListener progress) throws InterruptedException {
         return DiffUtils.diff(
                 Arrays.asList(sourceText.split("\n")),
                 Arrays.asList(targetText.split("\n")), progress);
@@ -90,7 +92,7 @@ public final class DiffUtils {
      * revised sequences. Never {@code null}.
      */
     public static <T> Patch<T> diff(List<T> source, List<T> target,
-            BiPredicate<T, T> equalizer) {
+            BiPredicate<T, T> equalizer) throws InterruptedException {
         if (equalizer != null) {
             return DiffUtils.diff(source, target,
                     DEFAULT_DIFF.create(equalizer));
@@ -99,7 +101,7 @@ public final class DiffUtils {
     }
 
     public static <T> Patch<T> diff(List<T> original, List<T> revised,
-            DiffAlgorithmI<T> algorithm, DiffAlgorithmListener progress) {
+            DiffAlgorithmI<T> algorithm, DiffAlgorithmListener progress) throws InterruptedException {
         return diff(original, revised, algorithm, progress, false);
     }
 
@@ -117,7 +119,7 @@ public final class DiffUtils {
      */
     public static <T> Patch<T> diff(List<T> original, List<T> revised,
             DiffAlgorithmI<T> algorithm, DiffAlgorithmListener progress,
-            boolean includeEqualParts) {
+            boolean includeEqualParts) throws InterruptedException {
         Objects.requireNonNull(original, "original must not be null");
         Objects.requireNonNull(revised, "revised must not be null");
         Objects.requireNonNull(algorithm, "algorithm must not be null");
@@ -135,7 +137,8 @@ public final class DiffUtils {
      * @return The patch describing the difference between the original and
      * revised sequences. Never {@code null}.
      */
-    public static <T> Patch<T> diff(List<T> original, List<T> revised, DiffAlgorithmI<T> algorithm) {
+    public static <T> Patch<T> diff(List<T> original, List<T> revised, DiffAlgorithmI<T> algorithm)
+        throws InterruptedException {
         return diff(original, revised, algorithm, null);
     }
 
@@ -148,7 +151,7 @@ public final class DiffUtils {
      * @param revised
      * @return
      */
-    public static Patch<String> diffInline(String original, String revised) {
+    public static Patch<String> diffInline(String original, String revised) throws InterruptedException {
         List<String> origList = new ArrayList<>();
         List<String> revList = new ArrayList<>();
         for (Character character : original.toCharArray()) {

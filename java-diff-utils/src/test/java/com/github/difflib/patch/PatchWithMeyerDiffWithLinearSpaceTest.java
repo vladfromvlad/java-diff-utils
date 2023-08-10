@@ -43,7 +43,7 @@ public class PatchWithMeyerDiffWithLinearSpaceTest {
     }
 
     @Test
-    public void testPatch_Change_withExceptionProcessor() {
+    public void testPatch_Change_withExceptionProcessor() throws InterruptedException {
         final List<String> changeTest_from = Arrays.asList("aaa", "bbb", "ccc", "ddd");
         final List<String> changeTest_to = Arrays.asList("aaa", "bxb", "cxc", "ddd");
 

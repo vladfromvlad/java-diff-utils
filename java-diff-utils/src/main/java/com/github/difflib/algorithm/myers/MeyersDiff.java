@@ -48,7 +48,8 @@ public final class MeyersDiff<T> implements DiffAlgorithmI<T> {
      * Return empty diff if get the error while procession the difference.
      */
     @Override
-    public List<Change> computeDiff(final List<T> source, final List<T> target, DiffAlgorithmListener progress) {
+    public List<Change> computeDiff(final List<T> source, final List<T> target, DiffAlgorithmListener progress)
+        throws InterruptedException {
         Objects.requireNonNull(source, "source list must not be null");
         Objects.requireNonNull(target, "target list must not be null");
 
@@ -73,7 +74,8 @@ public final class MeyersDiff<T> implements DiffAlgorithmI<T> {
      * @return A minimum {@link PathNode Path} accross the differences graph.
      * @throws DifferentiationFailedException if a diff path could not be found.
      */
-    private PathNode buildPath(final List<T> orig, final List<T> rev, DiffAlgorithmListener progress) {
+    private PathNode buildPath(final List<T> orig, final List<T> rev, DiffAlgorithmListener progress)
+        throws InterruptedException {
         Objects.requireNonNull(orig, "original sequence is null");
         Objects.requireNonNull(rev, "revised sequence is null");
 
@@ -88,6 +90,9 @@ public final class MeyersDiff<T> implements DiffAlgorithmI<T> {
 
         diagonal[middle + 1] = new PathNode(0, -1, true, true, null);
         for (int d = 0; d < MAX; d++) {
+            if (Thread.currentThread().isInterrupted()) {
+                throw new InterruptedException("Diff operation was interrupted!");
+            }
             if (progress != null) {
                 progress.diffStep(d, MAX);
             }

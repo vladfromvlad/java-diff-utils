@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 public class DiffRowGeneratorTest {
 
     @Test
-    public void testGenerator_Default() {
+    public void testGenerator_Default() throws InterruptedException {
         String first = "anything \n \nother";
         String second = "anything\n\nother";
 
@@ -42,7 +42,7 @@ public class DiffRowGeneratorTest {
     }
 
     @Test
-    public void testGenerator_Default2() {
+    public void testGenerator_Default2() throws InterruptedException {
         String first = "anything \n \nother";
         String second = "anything\n\nother";
 
@@ -56,7 +56,7 @@ public class DiffRowGeneratorTest {
     }
 
     @Test
-    public void testGenerator_InlineDiff() {
+    public void testGenerator_InlineDiff() throws InterruptedException {
         String first = "anything \n \nother";
         String second = "anything\n\nother";
 
@@ -72,7 +72,7 @@ public class DiffRowGeneratorTest {
     }
 
     @Test
-    public void testGenerator_IgnoreWhitespaces() {
+    public void testGenerator_IgnoreWhitespaces() throws InterruptedException {
         String first = "anything \n \nother\nmore lines";
         String second = "anything\n\nother\nsome more lines";
 
@@ -101,7 +101,7 @@ public class DiffRowGeneratorTest {
     }
 
     @Test
-    public void testGeneratorWithWordWrap() {
+    public void testGeneratorWithWordWrap() throws InterruptedException {
         String first = "anything \n \nother";
         String second = "anything\n\nother";
 
@@ -118,7 +118,7 @@ public class DiffRowGeneratorTest {
     }
 
     @Test
-    public void testGeneratorWithMerge() {
+    public void testGeneratorWithMerge() throws InterruptedException {
         String first = "anything \n \nother";
         String second = "anything\n\nother";
 
@@ -136,7 +136,7 @@ public class DiffRowGeneratorTest {
     }
 
     @Test
-    public void testGeneratorWithMerge2() {
+    public void testGeneratorWithMerge2() throws InterruptedException {
         DiffRowGenerator generator = DiffRowGenerator.create()
                 .showInlineDiffs(true)
                 .mergeOriginalRevised(true)
@@ -149,7 +149,7 @@ public class DiffRowGeneratorTest {
     }
 
     @Test
-    public void testGeneratorWithMerge3() {
+    public void testGeneratorWithMerge3() throws InterruptedException {
         String first = "test\nanything \n \nother";
         String second = "anything\n\nother\ntest\ntest2";
 
@@ -170,7 +170,7 @@ public class DiffRowGeneratorTest {
     }
 
     @Test
-    public void testGeneratorWithMergeByWord4() {
+    public void testGeneratorWithMergeByWord4() throws InterruptedException {
         DiffRowGenerator generator = DiffRowGenerator.create()
                 .showInlineDiffs(true)
                 .mergeOriginalRevised(true)
@@ -184,7 +184,7 @@ public class DiffRowGeneratorTest {
     }
 
     @Test
-    public void testGeneratorWithMergeByWord5() {
+    public void testGeneratorWithMergeByWord5() throws InterruptedException {
         DiffRowGenerator generator = DiffRowGenerator.create()
                 .showInlineDiffs(true)
                 .mergeOriginalRevised(true)
@@ -222,7 +222,7 @@ public class DiffRowGeneratorTest {
     }
 
     @Test
-    public void testGeneratorExample1() {
+    public void testGeneratorExample1() throws InterruptedException {
         DiffRowGenerator generator = DiffRowGenerator.create()
                 .showInlineDiffs(true)
                 .mergeOriginalRevised(true)
@@ -241,7 +241,7 @@ public class DiffRowGeneratorTest {
     }
 
     @Test
-    public void testGeneratorExample2() {
+    public void testGeneratorExample2() throws InterruptedException {
         DiffRowGenerator generator = DiffRowGenerator.create()
                 .showInlineDiffs(true)
                 .inlineDiffByWord(true)
@@ -264,7 +264,7 @@ public class DiffRowGeneratorTest {
     }
 
     @Test
-    public void testGeneratorUnchanged() {
+    public void testGeneratorUnchanged() throws InterruptedException {
         String first = "anything \n \nother";
         String second = "anything\n\nother";
 
@@ -282,7 +282,7 @@ public class DiffRowGeneratorTest {
     }
 
     @Test
-    public void testGeneratorIssue14() {
+    public void testGeneratorIssue14() throws InterruptedException {
         DiffRowGenerator generator = DiffRowGenerator.create()
                 .showInlineDiffs(true)
                 .mergeOriginalRevised(true)
@@ -301,7 +301,7 @@ public class DiffRowGeneratorTest {
     }
 
     @Test
-    public void testGeneratorIssue15() throws IOException {
+    public void testGeneratorIssue15() throws IOException, InterruptedException {
         DiffRowGenerator generator = DiffRowGenerator.create()
                 .showInlineDiffs(true) //show the ~ ~ and ** ** symbols on each difference
                 .inlineDiffByWord(true) //show the ~ ~ and ** ** around each different word instead of each letter
@@ -330,7 +330,7 @@ public class DiffRowGeneratorTest {
     }
 
     @Test
-    public void testGeneratorIssue22() {
+    public void testGeneratorIssue22() throws InterruptedException {
         DiffRowGenerator generator = DiffRowGenerator.create()
                 .showInlineDiffs(true)
                 .inlineDiffByWord(true)
@@ -354,7 +354,7 @@ public class DiffRowGeneratorTest {
     }
 
     @Test
-    public void testGeneratorIssue22_2() {
+    public void testGeneratorIssue22_2() throws InterruptedException {
         DiffRowGenerator generator = DiffRowGenerator.create()
                 .showInlineDiffs(true)
                 .inlineDiffByWord(true)
@@ -372,7 +372,7 @@ public class DiffRowGeneratorTest {
     }
 
     @Test
-    public void testGeneratorIssue22_3() {
+    public void testGeneratorIssue22_3() throws InterruptedException {
         DiffRowGenerator generator = DiffRowGenerator.create()
                 .showInlineDiffs(true)
                 .inlineDiffByWord(true)
@@ -390,7 +390,7 @@ public class DiffRowGeneratorTest {
     }
 
     @Test
-    public void testGeneratorIssue41DefaultNormalizer() {
+    public void testGeneratorIssue41DefaultNormalizer() throws InterruptedException {
         DiffRowGenerator generator = DiffRowGenerator.create()
                 .build();
         List<DiffRow> rows = generator.generateDiffRows(Arrays.asList("<"), Arrays.asList("<"));
@@ -398,7 +398,7 @@ public class DiffRowGeneratorTest {
     }
 
     @Test
-    public void testGeneratorIssue41UserNormalizer() {
+    public void testGeneratorIssue41UserNormalizer() throws InterruptedException {
         DiffRowGenerator generator = DiffRowGenerator.create()
                 .lineNormalizer(str -> str.replace("\t", "    "))
                 .build();
@@ -409,7 +409,7 @@ public class DiffRowGeneratorTest {
     }
 
     @Test
-    public void testGenerationIssue44reportLinesUnchangedProblem() {
+    public void testGenerationIssue44reportLinesUnchangedProblem() throws InterruptedException {
         DiffRowGenerator generator = DiffRowGenerator.create()
                 .showInlineDiffs(true)
                 .reportLinesUnchanged(true)
@@ -421,7 +421,7 @@ public class DiffRowGeneratorTest {
     }
 
     @Test
-    public void testIgnoreWhitespaceIssue66() {
+    public void testIgnoreWhitespaceIssue66() throws InterruptedException {
         DiffRowGenerator generator = DiffRowGenerator.create()
                 .showInlineDiffs(true)
                 .inlineDiffByWord(true)
@@ -442,7 +442,7 @@ public class DiffRowGeneratorTest {
     }
 
     @Test
-    public void testIgnoreWhitespaceIssue66_2() {
+    public void testIgnoreWhitespaceIssue66_2() throws InterruptedException {
         DiffRowGenerator generator = DiffRowGenerator.create()
                 .showInlineDiffs(true)
                 .inlineDiffByWord(true)
@@ -461,7 +461,7 @@ public class DiffRowGeneratorTest {
     }
 
     @Test
-    public void testIgnoreWhitespaceIssue64() {
+    public void testIgnoreWhitespaceIssue64() throws InterruptedException {
         DiffRowGenerator generator = DiffRowGenerator.create()
                 .showInlineDiffs(true)
                 .inlineDiffByWord(true)
@@ -483,7 +483,7 @@ public class DiffRowGeneratorTest {
     }
 
     @Test
-    public void testReplaceDiffsIssue63() {
+    public void testReplaceDiffsIssue63() throws InterruptedException {
         DiffRowGenerator generator = DiffRowGenerator.create()
                 .showInlineDiffs(true)
                 .inlineDiffByWord(true)
@@ -502,7 +502,7 @@ public class DiffRowGeneratorTest {
     }
 
     @Test
-    public void testProblemTooManyDiffRowsIssue65() {
+    public void testProblemTooManyDiffRowsIssue65() throws InterruptedException {
         DiffRowGenerator generator = DiffRowGenerator.create()
                 .showInlineDiffs(true)
                 .reportLinesUnchanged(true)
@@ -523,7 +523,7 @@ public class DiffRowGeneratorTest {
     }
 
     @Test
-    public void testProblemTooManyDiffRowsIssue65_NoMerge() {
+    public void testProblemTooManyDiffRowsIssue65_NoMerge() throws InterruptedException {
         DiffRowGenerator generator = DiffRowGenerator.create()
                 .showInlineDiffs(true)
                 .reportLinesUnchanged(true)
@@ -543,7 +543,7 @@ public class DiffRowGeneratorTest {
     }
 
     @Test
-    public void testProblemTooManyDiffRowsIssue65_DiffByWord() {
+    public void testProblemTooManyDiffRowsIssue65_DiffByWord() throws InterruptedException {
         DiffRowGenerator generator = DiffRowGenerator.create()
                 .showInlineDiffs(true)
                 .reportLinesUnchanged(true)
@@ -563,7 +563,7 @@ public class DiffRowGeneratorTest {
     }
 
     @Test
-    public void testProblemTooManyDiffRowsIssue65_NoInlineDiff() {
+    public void testProblemTooManyDiffRowsIssue65_NoInlineDiff() throws InterruptedException {
         DiffRowGenerator generator = DiffRowGenerator.create()
                 .showInlineDiffs(false)
                 .reportLinesUnchanged(true)
@@ -583,7 +583,7 @@ public class DiffRowGeneratorTest {
     }
 
     @Test
-    public void testLinefeedInStandardTagsWithLineWidthIssue81() {
+    public void testLinefeedInStandardTagsWithLineWidthIssue81() throws InterruptedException {
         List<String> original = Arrays.asList(("American bobtail jaguar. American bobtail bombay but turkish angora and tomcat.\n"
                 + "Russian blue leopard. Lion. Tabby scottish fold for russian blue, so savannah yet lynx. Tomcat singapura, cheetah.\n"
                 + "Bengal tiger panther but singapura but bombay munchkin for cougar.").split("\n"));
@@ -602,7 +602,7 @@ public class DiffRowGeneratorTest {
     }
 
     @Test
-    public void testIssue86WrongInlineDiff() throws IOException {
+    public void testIssue86WrongInlineDiff() throws IOException, InterruptedException {
         String original = Files.lines(Paths.get("target/test-classes/com/github/difflib/text/issue_86_original.txt")).collect(joining("\n"));
         String revised = Files.lines(Paths.get("target/test-classes/com/github/difflib/text/issue_86_revised.txt")).collect(joining("\n"));
 
@@ -623,7 +623,7 @@ public class DiffRowGeneratorTest {
     }
 
     @Test
-    public void testCorrectChangeIssue114() throws IOException {
+    public void testCorrectChangeIssue114() throws InterruptedException {
         List<String> original = Arrays.asList("A", "B", "C", "D", "E");
         List<String> revised = Arrays.asList("a", "C", "", "E");
 
@@ -643,7 +643,7 @@ public class DiffRowGeneratorTest {
     }
 
     @Test
-    public void testCorrectChangeIssue114_2() throws IOException {
+    public void testCorrectChangeIssue114_2() throws InterruptedException {
         List<String> original = Arrays.asList("A", "B", "C", "D", "E");
         List<String> revised = Arrays.asList("a", "C", "", "E");
 
@@ -664,7 +664,7 @@ public class DiffRowGeneratorTest {
     }
 
     @Test
-    public void testIssue119WrongContextLength() throws IOException {
+    public void testIssue119WrongContextLength() throws IOException, InterruptedException {
         String original = Files.lines(Paths.get("target/test-classes/com/github/difflib/text/issue_119_original.txt")).collect(joining("\n"));
         String revised = Files.lines(Paths.get("target/test-classes/com/github/difflib/text/issue_119_revised.txt")).collect(joining("\n"));
 
@@ -685,7 +685,7 @@ public class DiffRowGeneratorTest {
     }
 
     @Test
-    public void testIssue129WithDeltaDecompression() {
+    public void testIssue129WithDeltaDecompression() throws InterruptedException {
         List<String> lines1 = Arrays.asList(
                 "apple1",
                 "apple2",
@@ -723,7 +723,7 @@ public class DiffRowGeneratorTest {
     }
     
     @Test
-    public void testIssue129SkipDeltaDecompression() {
+    public void testIssue129SkipDeltaDecompression() throws InterruptedException {
         List<String> lines1 = Arrays.asList(
                 "apple1",
                 "apple2",
@@ -763,7 +763,7 @@ public class DiffRowGeneratorTest {
     }
     
     @Test
-    public void testIssue129SkipWhitespaceChanges() throws IOException {
+    public void testIssue129SkipWhitespaceChanges() throws IOException, InterruptedException {
         String original = Files.lines(Paths.get("target/test-classes/com/github/difflib/text/issue129_1.txt")).collect(joining("\n"));
         String revised = Files.lines(Paths.get("target/test-classes/com/github/difflib/text/issue129_2.txt")).collect(joining("\n"));
 

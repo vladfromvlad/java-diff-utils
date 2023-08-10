@@ -25,7 +25,7 @@ import com.github.difflib.DiffUtils;
 public class WithMeyersDiffWithLinearSpacePatchTest {
 
     @Test
-    public void testPatch_Insert() {
+    public void testPatch_Insert() throws InterruptedException {
         final List<String> insertTest_from = Arrays.asList("hhh");
         final List<String> insertTest_to = Arrays.asList("hhh", "jjj", "kkk", "lll");
 
@@ -38,7 +38,7 @@ public class WithMeyersDiffWithLinearSpacePatchTest {
     }
 
     @Test
-    public void testPatch_Delete() {
+    public void testPatch_Delete() throws InterruptedException {
         final List<String> deleteTest_from = Arrays.asList("ddd", "fff", "ggg", "hhh");
         final List<String> deleteTest_to = Arrays.asList("ggg");
 
@@ -51,7 +51,7 @@ public class WithMeyersDiffWithLinearSpacePatchTest {
     }
 
     @Test
-    public void testPatch_Change() {
+    public void testPatch_Change() throws InterruptedException {
         final List<String> changeTest_from = Arrays.asList("aaa", "bbb", "ccc", "ddd");
         final List<String> changeTest_to = Arrays.asList("aaa", "bxb", "cxc", "ddd");
 
@@ -162,7 +162,7 @@ public class WithMeyersDiffWithLinearSpacePatchTest {
     }
 
     @Test
-    public void testPatch_Serializable() throws IOException, ClassNotFoundException {
+    public void testPatch_Serializable() throws IOException, ClassNotFoundException, InterruptedException {
         final List<String> changeTest_from = Arrays.asList("aaa", "bbb", "ccc", "ddd");
         final List<String> changeTest_to = Arrays.asList("aaa", "bxb", "cxc", "ddd");
 
@@ -185,7 +185,7 @@ public class WithMeyersDiffWithLinearSpacePatchTest {
     }
 
     @Test
-    public void testPatch_Change_withExceptionProcessor() {
+    public void testPatch_Change_withExceptionProcessor() throws InterruptedException {
         final List<String> changeTest_from = Arrays.asList("aaa", "bbb", "ccc", "ddd");
         final List<String> changeTest_to = Arrays.asList("aaa", "bxb", "cxc", "ddd");
 

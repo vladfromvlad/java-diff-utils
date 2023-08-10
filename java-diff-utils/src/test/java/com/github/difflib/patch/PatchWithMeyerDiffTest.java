@@ -31,7 +31,7 @@ import org.junit.jupiter.api.Test;
 public class PatchWithMeyerDiffTest {
 
     @Test
-    public void testPatch_Change_withExceptionProcessor() {
+    public void testPatch_Change_withExceptionProcessor() throws InterruptedException {
         final List<String> changeTest_from = Arrays.asList("aaa", "bbb", "ccc", "ddd");
         final List<String> changeTest_to = Arrays.asList("aaa", "bxb", "cxc", "ddd");
 
@@ -53,7 +53,7 @@ public class PatchWithMeyerDiffTest {
     }
 
     @Test
-    public void testPatchThreeWayIssue138() throws PatchFailedException {
+    public void testPatchThreeWayIssue138() throws PatchFailedException, InterruptedException {
         List<String> base = Arrays.asList("Imagine there's no heaven".split("\\s+"));
         List<String> left = Arrays.asList("Imagine there's no HEAVEN".split("\\s+"));
         List<String> right = Arrays.asList("IMAGINE there's no heaven".split("\\s+"));

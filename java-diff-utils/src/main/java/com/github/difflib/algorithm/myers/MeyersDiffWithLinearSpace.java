@@ -44,7 +44,8 @@ public class MeyersDiffWithLinearSpace<T> implements DiffAlgorithmI<T> {
     }
 
     @Override
-    public List<Change> computeDiff(List<T> source, List<T> target, DiffAlgorithmListener progress) {
+    public List<Change> computeDiff(List<T> source, List<T> target, DiffAlgorithmListener progress)
+        throws InterruptedException {
         Objects.requireNonNull(source, "source list must not be null");
         Objects.requireNonNull(target, "target list must not be null");
 
@@ -68,7 +69,11 @@ public class MeyersDiffWithLinearSpace<T> implements DiffAlgorithmI<T> {
         return data.script;
     }
 
-    private void buildScript(DiffData data, int start1, int end1, int start2, int end2, Consumer<Integer> progress) {
+    private void buildScript(DiffData data, int start1, int end1, int start2, int end2, Consumer<Integer> progress)
+        throws InterruptedException {
+        if (Thread.currentThread().isInterrupted()) {
+            throw new InterruptedException("Diff operation was interrupted!");
+        }
         if (progress != null) {
             progress.accept((end1 - start1) / 2 + (end2 - start2) / 2);
         }

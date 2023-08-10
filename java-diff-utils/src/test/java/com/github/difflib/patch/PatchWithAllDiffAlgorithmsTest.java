@@ -37,7 +37,7 @@ public class PatchWithAllDiffAlgorithmsTest {
 
     @ParameterizedTest
     @MethodSource("provideAlgorithms")
-    public void testPatch_Insert(DiffAlgorithmFactory factory) {
+    public void testPatch_Insert(DiffAlgorithmFactory factory) throws InterruptedException {
         DiffUtils.withDefaultDiffAlgorithmFactory(factory);
         
         final List<String> insertTest_from = Arrays.asList("hhh");
@@ -53,7 +53,7 @@ public class PatchWithAllDiffAlgorithmsTest {
 
     @ParameterizedTest
     @MethodSource("provideAlgorithms")
-    public void testPatch_Delete(DiffAlgorithmFactory factory) {
+    public void testPatch_Delete(DiffAlgorithmFactory factory) throws InterruptedException {
         DiffUtils.withDefaultDiffAlgorithmFactory(factory);
         
         final List<String> deleteTest_from = Arrays.asList("ddd", "fff", "ggg", "hhh");
@@ -69,7 +69,7 @@ public class PatchWithAllDiffAlgorithmsTest {
 
     @ParameterizedTest
     @MethodSource("provideAlgorithms")
-    public void testPatch_Change(DiffAlgorithmFactory factory) {
+    public void testPatch_Change(DiffAlgorithmFactory factory) throws InterruptedException {
         DiffUtils.withDefaultDiffAlgorithmFactory(factory);
         
         final List<String> changeTest_from = Arrays.asList("aaa", "bbb", "ccc", "ddd");
@@ -85,7 +85,7 @@ public class PatchWithAllDiffAlgorithmsTest {
 
     @ParameterizedTest
     @MethodSource("provideAlgorithms")
-    public void testPatch_Serializable(DiffAlgorithmFactory factory) throws IOException, ClassNotFoundException {
+    public void testPatch_Serializable(DiffAlgorithmFactory factory) throws IOException, ClassNotFoundException, InterruptedException {
         DiffUtils.withDefaultDiffAlgorithmFactory(factory);
         
         final List<String> changeTest_from = Arrays.asList("aaa", "bbb", "ccc", "ddd");

@@ -34,7 +34,8 @@ public interface DiffAlgorithmI<T> {
      * @param progress progress listener
      * @return
      */
-    List<Change> computeDiff(List<T> source, List<T> target, DiffAlgorithmListener progress);
+    List<Change> computeDiff(List<T> source, List<T> target, DiffAlgorithmListener progress)
+        throws InterruptedException;
 
     /**
      * Simple extension to compute a changeset using arrays.
@@ -44,7 +45,8 @@ public interface DiffAlgorithmI<T> {
      * @param progress
      * @return
      */
-    default List<Change> computeDiff(T[] source, T[] target, DiffAlgorithmListener progress) {
+    default List<Change> computeDiff(T[] source, T[] target, DiffAlgorithmListener progress)
+        throws InterruptedException {
         return computeDiff(Arrays.asList(source), Arrays.asList(target), progress);
     }
 }

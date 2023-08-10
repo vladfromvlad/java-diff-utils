@@ -29,7 +29,7 @@ import org.junit.jupiter.api.Test;
 public class DiffUtilsTest {
 
     @Test
-    public void testDiff_Insert() {
+    public void testDiff_Insert() throws InterruptedException {
         final Patch<String> patch = DiffUtils.diff(Arrays.asList("hhh"), Arrays.
                 asList("hhh", "jjj", "kkk"));
         assertNotNull(patch);
@@ -41,7 +41,7 @@ public class DiffUtilsTest {
     }
 
     @Test
-    public void testDiff_Delete() {
+    public void testDiff_Delete() throws InterruptedException {
         final Patch<String> patch = DiffUtils.diff(Arrays.asList("ddd", "fff", "ggg"), Arrays.
                 asList("ggg"));
         assertNotNull(patch);
@@ -53,7 +53,7 @@ public class DiffUtilsTest {
     }
 
     @Test
-    public void testDiff_Change() {
+    public void testDiff_Change() throws InterruptedException {
         final List<String> changeTest_from = Arrays.asList("aaa", "bbb", "ccc");
         final List<String> changeTest_to = Arrays.asList("aaa", "zzz", "ccc");
 
@@ -67,14 +67,14 @@ public class DiffUtilsTest {
     }
 
     @Test
-    public void testDiff_EmptyList() {
+    public void testDiff_EmptyList() throws InterruptedException {
         final Patch<String> patch = DiffUtils.diff(new ArrayList<>(), new ArrayList<>());
         assertNotNull(patch);
         assertEquals(0, patch.getDeltas().size());
     }
 
     @Test
-    public void testDiff_EmptyListWithNonEmpty() {
+    public void testDiff_EmptyListWithNonEmpty() throws InterruptedException {
         final Patch<String> patch = DiffUtils.diff(new ArrayList<>(), Arrays.asList("aaa"));
         assertNotNull(patch);
         assertEquals(1, patch.getDeltas().size());
@@ -83,7 +83,7 @@ public class DiffUtilsTest {
     }
 
     @Test
-    public void testDiffInline() {
+    public void testDiffInline() throws InterruptedException {
         final Patch<String> patch = DiffUtils.diffInline("", "test");
         assertEquals(1, patch.getDeltas().size());
         assertTrue(patch.getDeltas().get(0) instanceof InsertDelta);
@@ -93,7 +93,7 @@ public class DiffUtilsTest {
     }
 
     @Test
-    public void testDiffInline2() {
+    public void testDiffInline2() throws InterruptedException {
         final Patch<String> patch = DiffUtils.diffInline("es", "fest");
         assertEquals(2, patch.getDeltas().size());
         assertTrue(patch.getDeltas().get(0) instanceof InsertDelta);
@@ -106,7 +106,7 @@ public class DiffUtilsTest {
     }
 
     @Test
-    public void testDiffIntegerList() {
+    public void testDiffIntegerList() throws InterruptedException {
         List<Integer> original = Arrays.asList(1, 2, 3, 4, 5);
         List<Integer> revised = Arrays.asList(2, 3, 4, 6);
 
@@ -122,7 +122,7 @@ public class DiffUtilsTest {
     }
 
     @Test
-    public void testDiffMissesChangeForkDnaumenkoIssue31() {
+    public void testDiffMissesChangeForkDnaumenkoIssue31() throws InterruptedException {
         List<String> original = Arrays.asList("line1", "line2", "line3");
         List<String> revised = Arrays.asList("line1", "line2-2", "line4");
 
@@ -136,7 +136,7 @@ public class DiffUtilsTest {
      */
     @Test
     @Disabled
-    public void testPossibleDiffHangOnLargeDatasetDnaumenkoIssue26() throws IOException {
+    public void testPossibleDiffHangOnLargeDatasetDnaumenkoIssue26() throws IOException, InterruptedException {
         ZipFile zip = new ZipFile(TestConstants.MOCK_FOLDER + "/large_dataset1.zip");
 
         Patch<String> patch = DiffUtils.diff(
@@ -155,7 +155,7 @@ public class DiffUtilsTest {
     }
 
     @Test
-    public void testDiffMyersExample1() {
+    public void testDiffMyersExample1() throws InterruptedException {
         final Patch<String> patch = DiffUtils.diff(Arrays.asList("A", "B", "C", "A", "B", "B", "A"), Arrays.asList("C", "B", "A", "B", "A", "C"));
         assertNotNull(patch);
         assertEquals(4, patch.getDeltas().size());
@@ -163,7 +163,7 @@ public class DiffUtilsTest {
     }
 
     @Test
-    public void testDiff_Equal() {
+    public void testDiff_Equal() throws InterruptedException {
         final Patch<String> patch = DiffUtils.diff(
                 Arrays.asList("hhh", "jjj", "kkk"),
                 Arrays.asList("hhh", "jjj", "kkk"), true);
@@ -176,7 +176,7 @@ public class DiffUtilsTest {
     }
 
     @Test
-    public void testDiff_InsertWithEqual() {
+    public void testDiff_InsertWithEqual() throws InterruptedException {
         final Patch<String> patch = DiffUtils.diff(Arrays.asList("hhh"), Arrays.
                 asList("hhh", "jjj", "kkk"), true);
         assertNotNull(patch);
@@ -194,7 +194,7 @@ public class DiffUtilsTest {
     }
 
     @Test
-    public void testDiff_ProblemIssue42() {
+    public void testDiff_ProblemIssue42() throws InterruptedException {
         final Patch<String> patch = DiffUtils.diff(
                 Arrays.asList("The", "dog", "is", "brown"),
                 Arrays.asList("The", "fox", "is", "down"), true);

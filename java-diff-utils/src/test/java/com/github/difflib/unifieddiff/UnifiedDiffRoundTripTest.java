@@ -33,7 +33,7 @@ public class UnifiedDiffRoundTripTest {
     }
 
     @Test
-    public void testGenerateUnified() throws IOException {
+    public void testGenerateUnified() throws IOException, InterruptedException {
         List<String> origLines = fileToLines(TestConstants.MOCK_FOLDER + "original.txt");
         List<String> revLines = fileToLines(TestConstants.MOCK_FOLDER + "revised.txt");
 
@@ -41,7 +41,7 @@ public class UnifiedDiffRoundTripTest {
     }
 
     @Test
-    public void testGenerateUnifiedWithOneDelta() throws IOException {
+    public void testGenerateUnifiedWithOneDelta() throws IOException, InterruptedException {
         List<String> origLines = fileToLines(TestConstants.MOCK_FOLDER + "one_delta_test_original.txt");
         List<String> revLines = fileToLines(TestConstants.MOCK_FOLDER + "one_delta_test_revised.txt");
 
@@ -49,7 +49,7 @@ public class UnifiedDiffRoundTripTest {
     }
 
     @Test
-    public void testGenerateUnifiedDiffWithoutAnyDeltas() throws IOException {
+    public void testGenerateUnifiedDiffWithoutAnyDeltas() throws IOException, InterruptedException {
         List<String> test = Arrays.asList("abc");
         Patch<String> patch = DiffUtils.diff(test, test);
         StringWriter writer = new StringWriter();
@@ -84,14 +84,14 @@ public class UnifiedDiffRoundTripTest {
      */
     @Test
     @Disabled
-    public void testPatchWithNoDeltas() throws IOException {
+    public void testPatchWithNoDeltas() throws IOException, InterruptedException {
         final List<String> lines1 = fileToLines(TestConstants.MOCK_FOLDER + "issue11_1.txt");
         final List<String> lines2 = fileToLines(TestConstants.MOCK_FOLDER + "issue11_2.txt");
         verify(lines1, lines2, "issue11_1.txt", "issue11_2.txt");
     }
 
     @Test
-    public void testDiff5() throws IOException {
+    public void testDiff5() throws IOException, InterruptedException {
         final List<String> lines1 = fileToLines(TestConstants.MOCK_FOLDER + "5A.txt");
         final List<String> lines2 = fileToLines(TestConstants.MOCK_FOLDER + "5B.txt");
         verify(lines1, lines2, "5A.txt", "5B.txt");
@@ -101,7 +101,7 @@ public class UnifiedDiffRoundTripTest {
      * Issue 19
      */
     @Test
-    public void testDiffWithHeaderLineInText() throws IOException {
+    public void testDiffWithHeaderLineInText() throws IOException, InterruptedException {
         List<String> original = new ArrayList<>();
         List<String> revised = new ArrayList<>();
 
@@ -129,7 +129,7 @@ public class UnifiedDiffRoundTripTest {
     }
 
     private void verify(List<String> origLines, List<String> revLines,
-            String originalFile, String revisedFile) throws IOException {
+            String originalFile, String revisedFile) throws IOException, InterruptedException {
         Patch<String> patch = DiffUtils.diff(origLines, revLines);
 
         StringWriter writer = new StringWriter();

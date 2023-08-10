@@ -54,7 +54,7 @@ public class UnifiedDiffWriterTest {
      * Issue 47
      */
     @Test
-    public void testWriteWithNewFile() throws URISyntaxException, IOException {
+    public void testWriteWithNewFile() throws URISyntaxException, IOException, InterruptedException {
         
         List<String> original = new ArrayList<>();
         List<String> revised = new ArrayList<>();

@@ -33,7 +33,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class MeyersDiffWithLinearSpaceTest {
     
     @Test
-    public void testDiffMyersExample1Forward() {
+    public void testDiffMyersExample1Forward() throws InterruptedException {
         List<String> original = Arrays.asList("A", "B", "C", "A", "B", "B", "A");
         List<String> revised = Arrays.asList("C", "B", "A", "B", "A", "C");
         final Patch<String> patch = Patch.generate(original, revised, new MeyersDiffWithLinearSpace<String>().computeDiff(original, revised, null));
@@ -44,7 +44,7 @@ public class MeyersDiffWithLinearSpaceTest {
     }
     
     @Test
-    public void testDiffMyersExample1ForwardWithListener() {
+    public void testDiffMyersExample1ForwardWithListener() throws InterruptedException {
         List<String> original = Arrays.asList("A", "B", "C", "A", "B", "B", "A");
         List<String> revised = Arrays.asList("C", "B", "A", "B", "A", "C");
         
@@ -76,7 +76,7 @@ public class MeyersDiffWithLinearSpaceTest {
     
     
     @Test
-    public void testPerformanceProblemsIssue124() {
+    public void testPerformanceProblemsIssue124() throws InterruptedException {
          List<String> old = Arrays.asList("abcd");
          List<String> newl = IntStream.range(0, 90000)
                     .boxed()

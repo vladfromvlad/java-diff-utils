@@ -14,7 +14,7 @@ public class ComputeDifference {
     private static final String ORIGINAL = TestConstants.MOCK_FOLDER + "original.txt";
     private static final String REVISED = TestConstants.MOCK_FOLDER + "revised.txt";
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
         List<String> original = Files.readAllLines(new File(ORIGINAL).toPath());
         List<String> revised = Files.readAllLines(new File(REVISED).toPath());
 

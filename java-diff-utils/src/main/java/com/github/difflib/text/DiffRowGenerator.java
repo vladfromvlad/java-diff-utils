@@ -209,7 +209,8 @@ public final class DiffRowGenerator {
      * @param revised the revised text
      * @return the DiffRows between original and revised texts
      */
-    public List<DiffRow> generateDiffRows(List<String> original, List<String> revised) {
+    public List<DiffRow> generateDiffRows(List<String> original, List<String> revised)
+        throws InterruptedException {
         return generateDiffRows(original, DiffUtils.diff(original, revised, equalizer));
     }
 
@@ -222,7 +223,8 @@ public final class DiffRowGenerator {
      * @param patch the given patch
      * @return the DiffRows between original and revised texts
      */
-    public List<DiffRow> generateDiffRows(final List<String> original, Patch<String> patch) {
+    public List<DiffRow> generateDiffRows(final List<String> original, Patch<String> patch)
+        throws InterruptedException {
         List<DiffRow> diffRows = new ArrayList<>();
         int endPos = 0;
         final List<AbstractDelta<String>> deltaList = patch.getDeltas();
@@ -249,7 +251,8 @@ public final class DiffRowGenerator {
     /**
      * Transforms one patch delta into a DiffRow object.
      */
-    private int transformDeltaIntoDiffRow(final List<String> original, int endPos, List<DiffRow> diffRows, AbstractDelta<String> delta) {
+    private int transformDeltaIntoDiffRow(final List<String> original, int endPos, List<DiffRow> diffRows, AbstractDelta<String> delta)
+        throws InterruptedException {
         Chunk<String> orig = delta.getSource();
         Chunk<String> rev = delta.getTarget();
 
@@ -359,7 +362,8 @@ public final class DiffRowGenerator {
      *
      * @param delta the given delta
      */
-    private List<DiffRow> generateInlineDiffs(AbstractDelta<String> delta) {
+    private List<DiffRow> generateInlineDiffs(AbstractDelta<String> delta)
+        throws InterruptedException {
         List<String> orig = normalizeLines(delta.getSource().getLines());
         List<String> rev = normalizeLines(delta.getTarget().getLines());
         List<String> origList;

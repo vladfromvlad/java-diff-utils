@@ -31,7 +31,7 @@ import org.junit.jupiter.api.Test;
 public class MyersDiffTest {
 
     @Test
-    public void testDiffMyersExample1Forward() {
+    public void testDiffMyersExample1Forward() throws InterruptedException {
         List<String> original = Arrays.asList("A", "B", "C", "A", "B", "B", "A");
         List<String> revised = Arrays.asList("C", "B", "A", "B", "A", "C");
         final Patch<String> patch = Patch.generate(original, revised, new MeyersDiff<String>().computeDiff(original, revised, null));
@@ -41,7 +41,7 @@ public class MyersDiffTest {
     }
     
     @Test
-    public void testDiffMyersExample1ForwardWithListener() {
+    public void testDiffMyersExample1ForwardWithListener() throws InterruptedException {
         List<String> original = Arrays.asList("A", "B", "C", "A", "B", "B", "A");
         List<String> revised = Arrays.asList("C", "B", "A", "B", "A", "C");
         
